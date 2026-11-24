@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta property="og:title" content="Anat & Britto — Engagement Invitation"/>
+  <meta property="og:description" content="Join us to celebrate the engagement of Anat Tom & Britto Thomas on 3rd January 2027 at St Thomas Church, Melukavumattom."/>
+  <meta property="og:type" content="website"/>
+  <title>Anat & Britto — Engagement Invitation</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8d5a3;
+      --gold-dark: #9a7a2e;
+      --black: #0d0d0d;
+      --white: #fafafa;
+      --offwhite: #f5f0e8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      background: radial-gradient(ellipse at top, #1a1409 0%, #0d0d0d 60%);
+      overflow: hidden;
+    }
+
+    /* Decorative corner lines */
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border: 1px solid rgba(201,168,76,0.25);
+    }
+    .hero::before { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+    .hero::after  { bottom: 20px; right: 20px; border-left: none; border-top: none; }
+
+    /* Floating ring particles */
+    .particles { position: absolute; inset: 0; pointer-events: none; }
+    .p {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.4), transparent 70%);
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.3; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+
+    .invite-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 1s ease both;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1rem auto;
+      width: min(400px, 90vw);
+      animation: fadeUp 1.2s ease both;
+    }
+    .divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+    .divider-diamond {
+      width: 8px; height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    .hero-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 10vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      animation: fadeUp 1s ease 0.2s both;
+    }
+    .hero-names .name { display: block; }
+    .hero-names .ampersand {
+      font-style: italic;
+      color: var(--gold);
+      font-size: 0.6em;
+      display: block;
+      margin: 0.1em 0;
+    }
+
+    .host-line {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.5rem;
+      animation: fadeUp 1s ease 0.4s both;
+    }
+
+    .hero-date-pill {
+      margin-top: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      border: 1px solid var(--gold);
+      padding: 0.6rem 1.8rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      animation: fadeUp 1s ease 0.6s both;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      animation: fadeUp 1s ease 1.5s both;
+    }
+    .scroll-arrow {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, var(--gold));
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 1.5rem; max-width: 800px; margin: 0 auto; text-align: center; }
+
+    .section-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    /* ── COUNTDOWN ── */
+    .countdown-section {
+      background: linear-gradient(135deg, #161208, #0d0d0d);
+      max-width: 100%;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .countdown-section > * { max-width: 800px; margin-left: auto; margin-right: auto; }
+
+    .countdown-grid {
+      display: flex;
+      justify-content: center;
+      gap: clamp(1rem, 4vw, 3rem);
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .count-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .count-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      min-width: 2ch;
+      text-align: center;
+    }
+    .count-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.4rem;
+    }
+    .count-sep {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      color: var(--gold);
+      align-self: flex-start;
+      padding-top: 0.1em;
+      opacity: 0.5;
+    }
+
+    /* ── EVENT DETAILS ── */
+    .details-card {
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 3rem 2rem;
+      margin-top: 2rem;
+      position: relative;
+      background: rgba(201,168,76,0.03);
+    }
+    .details-card::before, .details-card::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      border-color: var(--gold);
+      border-style: solid;
+    }
+    .details-card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .details-card::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+    .detail-row {
+      margin: 1.5rem 0;
+    }
+    .detail-row-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .detail-row-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--white);
+    }
+    .detail-sep { width: 40px; height: 1px; background: rgba(201,168,76,0.3); margin: 1.5rem auto; }
+
+    /* ── MAP BUTTON ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--black);
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201,168,76,0.3); }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+    .btn-outline:hover { background: rgba(201,168,76,0.1); transform: translateY(-2px); }
+
+    /* ── RSVP ── */
+    .rsvp-section { background: linear-gradient(135deg, #161208, #0d0d0d); max-width: 100%; border-top: 1px solid rgba(201,168,76,0.15); }
+    .rsvp-section > * { max-width: 800px; margin-left: auto; margin-right: auto; }
+
+    .heading-serif {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 300;
+      margin: 0.5rem 0 1.5rem;
+    }
+
+    /* ── WHATSAPP SHARE ── */
+    .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.9rem 2.2rem;
+      background: #25D366;
+      color: #fff;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+    }
+    .wa-btn:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,211,102,0.35); }
+    .wa-btn svg { width: 20px; height: 20px; fill: white; flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+    footer span { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RING ICON ── */
+    .ring-icon { font-size: 2rem; margin-bottom: 1rem; }
+
+    /* ── GOLD TEXT ── */
+    .gold { color: var(--gold); }
+
+    /* ── BLESSING ── */
+    .blessing {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      color: rgba(255,255,255,0.6);
+      max-width: 500px;
+      margin: 1.5rem auto 0;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 480px) {
+      .hero::before, .hero::after { width: 150px; height: 150px; }
+      .details-card { padding: 2rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="particles" id="particles"></div>
+
+    <p class="invite-label">Together with their families</p>
+
+    <div class="divider reveal"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+
+    <h1 class="hero-names">
+      <span class="name">Anat Tom</span>
+      <span class="ampersand">&amp;</span>
+      <span class="name">Britto Thomas</span>
+    </h1>
+
+    <div class="divider reveal"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+
+    <p class="host-line">Mr Tomy Sebastian &nbsp;·&nbsp; Mrs Bincy Tomy</p>
+
+    <div class="hero-date-pill">
+      <span>💍</span>
+      <span>Engagement &nbsp;·&nbsp; 3rd January 2027</span>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <section class="countdown-section" style="padding:4rem 1.5rem;">
+    <p class="section-label reveal">Counting down to the big day</p>
+    <h2 class="heading-serif reveal">The Celebration Begins In</h2>
+    <div class="countdown-grid" id="countdown">
+      <div class="count-box"><div class="count-num" id="cd-days">--</div><div class="count-label">Days</div></div>
+      <div class="count-sep">:</div>
+      <div class="count-box"><div class="count-num" id="cd-hours">--</div><div class="count-label">Hours</div></div>
+      <div class="count-sep">:</div>
+      <div class="count-box"><div class="count-num" id="cd-mins">--</div><div class="count-label">Minutes</div></div>
+      <div class="count-sep">:</div>
+      <div class="count-box"><div class="count-num" id="cd-secs">--</div><div class="count-label">Seconds</div></div>
+    </div>
+  </section>
+
+  <!-- EVENT DETAILS -->
+  <section>
+    <p class="section-label reveal">You're Invited</p>
+    <h2 class="heading-serif reveal">Event Details</h2>
+    <div class="details-card reveal">
+      <div class="detail-row">
+        <p class="detail-row-label">Date</p>
+        <p class="detail-row-val">Sunday, 3rd January 2027</p>
+      </div>
+      <div class="detail-sep"></div>
+      <div class="detail-row">
+        <p class="detail-row-label">Time</p>
+        <p class="detail-row-val">12:45 PM</p>
+      </div>
+      <div class="detail-sep"></div>
+      <div class="detail-row">
+        <p class="detail-row-label">Venue</p>
+        <p class="detail-row-val">St Thomas Church</p>
+        <p style="color:rgba(255,255,255,0.45); font-size:0.8rem; margin-top:0.3rem; letter-spacing:0.1em;">Melukavumattom</p>
+      </div>
+      <div class="detail-sep"></div>
+      <div class="detail-row">
+        <a href="https://maps.google.com/?q=St+Thomas+Church+Melukavumattom" target="_blank" class="btn btn-outline">
+          📍 &nbsp;Open in Google Maps
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLESSING -->
+  <section style="padding-top:0;">
+    <div class="divider reveal"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+    <p class="blessing reveal">
+      "Two souls, one heart,<br>joined together in love and grace."
+    </p>
+    <div class="divider reveal" style="margin-top:2rem;"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp-section" style="padding:4rem 1.5rem;">
+    <p class="section-label reveal">We'd love to see you there</p>
+    <h2 class="heading-serif reveal">RSVP</h2>
+    <p style="color:rgba(255,255,255,0.5); font-size:0.8rem; margin-bottom:2rem; line-height:1.8;" class="reveal">
+      Kindly confirm your attendance by reaching out to us on WhatsApp.
+    </p>
+    <a href="https://wa.me/919496907996?text=Hi%2C+I+would+love+to+attend+Anat+%26+Britto%27s+engagement+on+3rd+January+2027.+Counting+me+in+%F0%9F%8E%89"
+       class="wa-btn reveal" target="_blank">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      RSVP on WhatsApp
+    </a>
+  </section>
+
+  <!-- SHARE SECTION -->
+  <section>
+    <p class="section-label reveal">Spread the joy</p>
+    <h2 class="heading-serif reveal">Share this Invitation</h2>
+    <p style="color:rgba(255,255,255,0.45); font-size:0.8rem; margin-bottom:2rem;" class="reveal">
+      Share this invite with family and friends.
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;" class="reveal">
+      <a id="wa-share-btn" href="#" class="wa-btn" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Share on WhatsApp
+      </a>
+      <button onclick="copyLink()" class="btn btn-outline" id="copy-btn">🔗 &nbsp;Copy Link</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>With love from <span>Anat &amp; Britto</span></p>
+    <p style="margin-top:0.5rem; color:rgba(255,255,255,0.1);">3rd January 2027 &nbsp;·&nbsp; St Thomas Church, Melukavumattom</p>
+  </footer>
+
+  <script>
+    // ── Particles ──
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.classList.add('p');
+      const size = Math.random() * 60 + 20;
+      p.style.cssText = `
+        width:${size}px; height:${size}px;
+        left:${Math.random()*100}%;
+        animation-duration:${Math.random()*15+10}s;
+        animation-delay:${Math.random()*15}s;
+      `;
+      container.appendChild(p);
+    }
+
+    // ── Countdown ──
+    const target = new Date('2027-01-03T12:45:00+05:30');
+    function updateCountdown() {
+      const now  = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        document.getElementById('cd-days').textContent = '00';
+        document.getElementById('cd-hours').textContent = '00';
+        document.getElementById('cd-mins').textContent = '00';
+        document.getElementById('cd-secs').textContent = '00';
+        return;
+      }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+      document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
+      document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ── Scroll reveal ──
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer  = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // ── WhatsApp share (uses current page URL) ──
+    const pageUrl  = encodeURIComponent(window.location.href);
+    const waMsg    = encodeURIComponent("💍 You're invited! Join us for the engagement of Anat Tom & Britto Thomas on 3rd January 2027 at St Thomas Church, Melukavumattom.\n\nView the invitation: " + window.location.href);
+    document.getElementById('wa-share-btn').href = `https://wa.me/?text=${waMsg}`;
+
+    // ── Copy link ──
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = '✅  Copied!';
+        setTimeout(() => btn.innerHTML = '🔗 &nbsp;Copy Link', 2500);
+      });
+    }
+  </script>
+</body>
+</html>
