@@ -15,7 +15,7 @@ const CONFIG = {
     lastName: 'Tom',
     fullName: 'Anat Tom',
     initial: 'A',
-    photo: 'assets/images/bride.jpg',
+    photo: 'assets/images/bride.jpg?v=2',
     photoAlt: 'Anat Tom — Bride',
   },
   groom: {
@@ -23,7 +23,7 @@ const CONFIG = {
     lastName: 'Thomas',
     fullName: 'Britto Thomas',
     initial: 'B',
-    photo: 'assets/images/groom.jpg',
+    photo: 'assets/images/groom.jpg?v=2',
     photoAlt: 'Britto Thomas — Groom',
   },
 

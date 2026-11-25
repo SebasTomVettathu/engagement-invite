@@ -44,22 +44,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const brideImg = document.getElementById('bride-portrait');
     const groomImg = document.getElementById('groom-portrait');
     if (brideImg) {
-      brideImg.src = C.bride.photo;
-      brideImg.alt = C.bride.photoAlt;
+      brideImg.onload = function () {
+        this.style.display = 'block';
+        const ph = document.getElementById('bride-placeholder');
+        if (ph) ph.style.display = 'none';
+      };
       brideImg.onerror = function () {
         this.style.display = 'none';
         const ph = document.getElementById('bride-placeholder');
         if (ph) ph.style.display = 'flex';
       };
+      brideImg.src = C.bride.photo;
+      brideImg.alt = C.bride.photoAlt;
     }
     if (groomImg) {
-      groomImg.src = C.groom.photo;
-      groomImg.alt = C.groom.photoAlt;
+      groomImg.onload = function () {
+        this.style.display = 'block';
+        const ph = document.getElementById('groom-placeholder');
+        if (ph) ph.style.display = 'none';
+      };
       groomImg.onerror = function () {
         this.style.display = 'none';
         const ph = document.getElementById('groom-placeholder');
         if (ph) ph.style.display = 'flex';
       };
+      groomImg.src = C.groom.photo;
+      groomImg.alt = C.groom.photoAlt;
     }
 
     /* Family Section */
