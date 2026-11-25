@@ -1,8 +1,8 @@
 /**
  * ============================================================
- * ENGAGEMENT INVITATION — MAIN JAVASCRIPT
+ * ENGAGEMENT INVITATION — JAVASCRIPT
  * Anat Tom & Britto Thomas
- * Rouge & Ivory | English only | Auto-music | No gallery/story
+ * Luxury Wedding Aesthetic · Rouge & Ivory
  * ============================================================
  */
 
@@ -17,30 +17,30 @@ document.addEventListener('DOMContentLoaded', () => {
      POPULATE CONTENT FROM CONFIG
      ════════════════════════════════════════ */
   function populateContent() {
-    /* Event details */
-    const dateEl  = document.getElementById('event-date');
-    const timeEl  = document.getElementById('event-time');
-    if (dateEl) dateEl.textContent = C.event.dateDisplay;
-    if (timeEl) timeEl.textContent = C.event.time;
+    /* Event card values */
+    const cardDateEl = document.getElementById('card-date-val');
+    const cardTimeEl = document.getElementById('card-time-val');
+    if (cardDateEl) cardDateEl.textContent = C.event.dateShort || '3 January 2027';
+    if (cardTimeEl) cardTimeEl.textContent = C.event.time || '12:15 PM';
 
-    /* Maps buttons */
+    /* Maps links */
     document.querySelectorAll('.maps-btn').forEach(btn => {
       btn.href = C.event.venue.mapsUrl;
     });
 
-    /* RSVP WhatsApp button */
+    /* WhatsApp RSVP Link */
     const rsvpBtn = document.getElementById('rsvp-wa-btn');
     if (rsvpBtn) {
       rsvpBtn.href = `https://wa.me/${C.whatsapp.number}?text=${encodeURIComponent(C.whatsapp.rsvpMessage)}`;
     }
 
-    /* Couple names */
+    /* Couple Names */
     const brideEl = document.getElementById('hero-bride-name');
     const groomEl = document.getElementById('hero-groom-name');
     if (brideEl) brideEl.textContent = C.bride.fullName;
     if (groomEl) groomEl.textContent = C.groom.fullName;
 
-    /* Couple portraits — show placeholder on error */
+    /* Couple Portraits */
     const brideImg = document.getElementById('bride-portrait');
     const groomImg = document.getElementById('groom-portrait');
     if (brideImg) {
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     }
 
-    /* Family */
+    /* Family Section */
     const brideFam = document.getElementById('bride-family-names');
     const groomFam = document.getElementById('groom-family-names');
     if (brideFam) {
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sealEl = document.getElementById('wax-seal-text');
     if (sealEl) sealEl.textContent = `${C.bride.initial} & ${C.groom.initial}`;
 
-    /* OG meta */
+    /* Meta tags */
     const ogTitle = document.querySelector('meta[property="og:title"]');
     const ogDesc  = document.querySelector('meta[property="og:description"]');
     if (ogTitle) ogTitle.content = `${C.bride.fullName} & ${C.groom.fullName} — Engagement Invitation`;
@@ -97,10 +97,10 @@ document.addEventListener('DOMContentLoaded', () => {
      ENVELOPE
      ════════════════════════════════════════ */
   function initEnvelope() {
-    const envelope      = document.getElementById('envelope');
-    const mainSection   = document.getElementById('main-invitation');
-    const tapHint       = document.getElementById('envelope-tap-hint');
-    const envSection    = document.getElementById('envelope-section');
+    const envelope    = document.getElementById('envelope');
+    const mainSection = document.getElementById('main-invitation');
+    const tapHint     = document.getElementById('envelope-tap-hint');
+    const envSection  = document.getElementById('envelope-section');
     if (!envelope || !mainSection) return;
 
     let opened = false;
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
       envelope.setAttribute('aria-label', 'Invitation opened');
       if (tapHint) tapHint.style.opacity = '0';
 
-      /* Auto-play music — works because envelope click is a user gesture */
+      /* Auto-play music when user taps to open envelope */
       playMusic();
 
       const delay = prefersReducedMotion() ? 150 : 1200;
@@ -130,6 +130,24 @@ document.addEventListener('DOMContentLoaded', () => {
     envelope.addEventListener('click', openEnvelope);
     envelope.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEnvelope(); }
+    });
+  }
+
+  /* ════════════════════════════════════════
+     1. ANIMATED SCROLL INDICATOR
+     ════════════════════════════════════════ */
+  function initScrollIndicator() {
+    const scrollBtn = document.getElementById('hero-scroll-btn');
+    if (!scrollBtn) return;
+
+    scrollBtn.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.getElementById('countdown-section');
+      if (target) {
+        target.scrollIntoView({
+          behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+        });
+      }
     });
   }
 
@@ -154,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ════════════════════════════════════════
-     COUNTDOWN
+     3. PROMINENT COUNTDOWN TIMER
      ════════════════════════════════════════ */
   function initCountdown() {
     const daysEl     = document.getElementById('cd-days');
@@ -167,25 +185,65 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!daysEl) return;
 
     const target = new Date(C.event.dateISO);
+    let prevSecs = null;
+    let prevMins = null;
+    let prevHours = null;
+    let prevDays = null;
+
+    function animateTick(el) {
+      if (prefersReducedMotion() || !el) return;
+      el.classList.remove('tick');
+      // Trigger reflow
+      void el.offsetWidth;
+      el.classList.add('tick');
+    }
 
     function update() {
       const diff = target - new Date();
+
       if (diff <= 0) {
         if (gridEl) gridEl.style.display = 'none';
         if (completeEl) {
           completeEl.style.display = 'block';
-          completeEl.textContent = '🎉 Today is the Day! Congratulations Anat & Britto!';
+          completeEl.textContent = '🎉 The celebration has begun! Wishing Anat & Britto a lifetime of love and happiness.';
         }
         return;
       }
+
       const d = Math.floor(diff / 86400000);
       const h = Math.floor((diff % 86400000) / 3600000);
       const m = Math.floor((diff % 3600000) / 60000);
       const s = Math.floor((diff % 60000) / 1000);
-      daysEl.textContent  = String(d).padStart(2, '0');
-      hoursEl.textContent = String(h).padStart(2, '0');
-      minsEl.textContent  = String(m).padStart(2, '0');
-      secsEl.textContent  = String(s).padStart(2, '0');
+
+      const dStr = String(d).padStart(2, '0');
+      const hStr = String(h).padStart(2, '0');
+      const mStr = String(m).padStart(2, '0');
+      const sStr = String(s).padStart(2, '0');
+
+      if (dStr !== prevDays) {
+        daysEl.textContent = dStr;
+        if (prevDays !== null) animateTick(daysEl);
+        prevDays = dStr;
+      }
+
+      if (hStr !== prevHours) {
+        hoursEl.textContent = hStr;
+        if (prevHours !== null) animateTick(hoursEl);
+        prevHours = hStr;
+      }
+
+      if (mStr !== prevMins) {
+        minsEl.textContent = mStr;
+        if (prevMins !== null) animateTick(minsEl);
+        prevMins = mStr;
+      }
+
+      if (sStr !== prevSecs) {
+        secsEl.textContent = sStr;
+        if (prevSecs !== null) animateTick(secsEl);
+        prevSecs = sStr;
+      }
+
       if (liveEl) liveEl.textContent = `${d} Days, ${h} Hours, ${m} Minutes, ${s} Seconds`;
     }
 
@@ -194,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ════════════════════════════════════════
-     MUSIC — auto-play, mute only
+     BACKGROUND MUSIC
      ════════════════════════════════════════ */
   let audioEl   = null;
   let isMuted   = false;
@@ -219,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isPlaying = true;
       updateMusicUI();
     }).catch(() => {
-      /* Autoplay still blocked in some edge cases — silent fail */
+      /* Autoplay restriction fallback */
       isPlaying = false;
       updateMusicUI();
     });
@@ -233,8 +291,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateMusicUI() {
-    const muteBtn     = document.getElementById('music-mute-btn');
-    const nowPlayEl   = document.getElementById('now-playing-text');
+    const muteBtn   = document.getElementById('music-mute-btn');
+    const nowPlayEl = document.getElementById('now-playing-text');
 
     if (muteBtn) {
       muteBtn.textContent = isMuted ? '🔇' : '🔊';
@@ -247,13 +305,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ════════════════════════════════════════
-     CALENDAR
+     CALENDAR INTEGRATION
      ════════════════════════════════════════ */
   function initCalendar() {
     const gcalBtn = document.getElementById('gcal-btn');
     if (gcalBtn) {
       gcalBtn.addEventListener('click', () => {
-        /* 12:15 IST = 06:45 UTC; end estimate +3h */
+        /* 12:15 IST = 06:45 UTC */
         const url = `https://calendar.google.com/calendar/render?action=TEMPLATE` +
           `&text=${encodeURIComponent(C.event.title)}` +
           `&dates=20270103T061500Z/20270103T091500Z` +
@@ -294,42 +352,98 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ════════════════════════════════════════
-     SHARE
+     6. IMPROVED SHARING SECTION (3 OPTIONS)
      ════════════════════════════════════════ */
   function initShare() {
     const pageUrl = window.location.href;
-    const msg = `💍 You're invited! Join us for the engagement of ${C.bride.fullName} & ${C.groom.fullName}` +
-                ` on ${C.event.dateShort} at ${C.event.venue.full}.\n\nView the invitation: ${pageUrl}`;
+    const shareTitle = `Engagement of ${C.bride.fullName} & ${C.groom.fullName}`;
+    const shareText  = `💍 You're cordially invited to celebrate the engagement of ${C.bride.fullName} & ${C.groom.fullName} on ${C.event.dateShort} at ${C.event.venue.full}.\n\nView the invitation:`;
 
+    const toastEl = document.getElementById('share-toast');
+    let toastTimeout = null;
+
+    function showToast(message) {
+      if (!toastEl) return;
+      toastEl.textContent = message;
+      toastEl.classList.add('show');
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toastEl.classList.remove('show');
+      }, 3000);
+    }
+
+    function copyToClipboard() {
+      const copyTextEl = document.getElementById('copy-btn-text');
+      const originalText = copyTextEl ? copyTextEl.textContent : 'Copy Invitation Link';
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(pageUrl).then(() => {
+          showToast('Link copied successfully! ✨');
+          if (copyTextEl) copyTextEl.textContent = 'Link Copied! ✨';
+          setTimeout(() => { if (copyTextEl) copyTextEl.textContent = originalText; }, 2500);
+        }).catch(() => fallbackCopy(originalText));
+      } else {
+        fallbackCopy(originalText);
+      }
+    }
+
+    function fallbackCopy(originalText) {
+      const copyTextEl = document.getElementById('copy-btn-text');
+      const ta = Object.assign(document.createElement('textarea'), {
+        value: pageUrl,
+        style: 'position:fixed;opacity:0;'
+      });
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast('Link copied successfully! ✨');
+        if (copyTextEl) copyTextEl.textContent = 'Link Copied! ✨';
+        setTimeout(() => { if (copyTextEl) copyTextEl.textContent = originalText; }, 2500);
+      } catch (err) {
+        showToast('Please copy: ' + pageUrl);
+      }
+      document.body.removeChild(ta);
+    }
+
+    /* Option 1: WhatsApp Share */
     const waShareBtn = document.getElementById('wa-share-btn');
-    if (waShareBtn) waShareBtn.href = `https://wa.me/?text=${encodeURIComponent(msg)}`;
+    if (waShareBtn) {
+      const fullWaMsg = `${shareText} ${pageUrl}`;
+      waShareBtn.href = `https://wa.me/?text=${encodeURIComponent(fullWaMsg)}`;
+    }
 
+    /* Option 2: Copy Link */
     const copyBtn = document.getElementById('copy-btn');
     if (copyBtn) {
-      copyBtn.addEventListener('click', () => {
-        const original = copyBtn.innerHTML;
-        navigator.clipboard.writeText(pageUrl).then(() => {
-          copyBtn.textContent = '✅ Copied!';
-          setTimeout(() => { copyBtn.innerHTML = original; }, 2500);
-        }).catch(() => {
-          /* Fallback */
-          const ta = Object.assign(document.createElement('textarea'), {
-            value: pageUrl,
-            style: 'position:fixed;opacity:0;'
+      copyBtn.addEventListener('click', copyToClipboard);
+    }
+
+    /* Option 3: Native Share (Web Share API) */
+    const nativeShareBtn = document.getElementById('native-share-btn');
+    if (nativeShareBtn) {
+      nativeShareBtn.addEventListener('click', () => {
+        if (navigator.share) {
+          navigator.share({
+            title: shareTitle,
+            text: `${shareText} `,
+            url: pageUrl,
+          }).catch(err => {
+            // If user didn't simply cancel, fall back to copy
+            if (err.name !== 'AbortError') {
+              copyToClipboard();
+            }
           });
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand('copy');
-          document.body.removeChild(ta);
-          copyBtn.textContent = '✅ Copied!';
-          setTimeout(() => { copyBtn.innerHTML = original; }, 2500);
-        });
+        } else {
+          // Fallback on browsers without native share
+          copyToClipboard();
+        }
       });
     }
   }
 
   /* ════════════════════════════════════════
-     SCROLL REVEAL
+     SCROLL REVEAL OBSERVER
      ════════════════════════════════════════ */
   function initReveal() {
     const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
@@ -344,16 +458,17 @@ document.addEventListener('DOMContentLoaded', () => {
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
     els.forEach(el => observer.observe(el));
   }
 
   /* ════════════════════════════════════════
-     INIT
+     INITIALIZATION
      ════════════════════════════════════════ */
   populateContent();
   initMusic();
   initEnvelope();
+  initScrollIndicator();
   initParticles();
   initCountdown();
   initCalendar();
