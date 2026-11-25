@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olive Green Wedding Theme Previews — Anat &amp; Britto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #111;
+      color: #eee;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #333;
+    }
+    .title h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2rem;
+      color: #E8D5A3;
+    }
+    .title p {
+      font-size: 0.85rem;
+      color: #888;
+    }
+    .theme-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .theme-btn {
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      border: 1px solid #444;
+      background: #222;
+      color: #ccc;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .theme-btn.active {
+      background: #C8A24A;
+      color: #111;
+      border-color: #E8D5A3;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(200, 162, 74, 0.4);
+    }
+    .theme-desc-card {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .theme-desc-card h3 {
+      font-size: 1.05rem;
+      color: #E8D5A3;
+      margin-bottom: 0.25rem;
+    }
+    .theme-desc-card p {
+      font-size: 0.85rem;
+      color: #aaa;
+      line-height: 1.5;
+    }
+    .palette-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .swatch-box {
+      background: #222;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 0.5rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .swatch-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+    .swatch-info {
+      font-size: 0.75rem;
+    }
+    .swatch-info .swatch-name {
+      color: #777;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+    }
+    .swatch-info .swatch-hex {
+      font-family: monospace;
+      font-weight: 600;
+      color: #ddd;
+    }
+    
+    /* Mockup Frame */
+    .mockup-frame {
+      border-radius: 20px;
+      padding: 3.5rem 2.5rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .bg-overlay-svg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 240px;
+      height: 240px;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .bg-overlay-svg-bl {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200px;
+      height: 200px;
+      opacity: 0.25;
+      pointer-events: none;
+      transform: rotate(180deg);
+    }
+    .mockup-envelope {
+      width: 74px;
+      height: 54px;
+      border-radius: 8px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 2;
+    }
+    .mockup-seal {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: #fff;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+    .mockup-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .mockup-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .mockup-names {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 3rem;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    .mockup-names span {
+      font-size: 2.2rem;
+      font-style: italic;
+    }
+    .mockup-quote {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .mockup-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .mockup-card {
+      border-radius: 14px;
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    .mockup-card-icon {
+      font-size: 1.5rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mockup-card-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.7;
+    }
+    .mockup-card-val {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-top: 0.1rem;
+    }
+    .mockup-card-sub {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+    .mockup-countdown {
+      border-radius: 14px;
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(10px);
+    }
+    .mockup-countdown-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    .timer-unit {
+      border-radius: 10px;
+      padding: 0.75rem 0.5rem;
+    }
+    .timer-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .timer-lbl {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.25rem;
+      opacity: 0.7;
+    }
+    .mockup-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .mockup-btn {
+      padding: 0.8rem 1.75rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-rsvp {
+      background: #25D366;
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+    }
+    .btn-cal {
+      background: transparent;
+      border-width: 1px;
+      border-style: solid;
+      backdrop-filter: blur(10px);
+    }
+    .mockup-footer {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 1rem;
+      border-top-width: 1px;
+      border-top-style: solid;
+      opacity: 0.75;
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <div class="title">
+        <h1>Olive Green &amp; Image Background Previews</h1>
+        <p>Engagement of Anat Tom &amp; Britto Thomas</p>
+      </div>
+      <div class="theme-buttons">
+        <button class="theme-btn active" onclick="setTheme('tuscan')">
+          <span>🫒</span> Tuscan Olive &amp; Gold
+        </button>
+        <button class="theme-btn" onclick="setTheme('olivewine')">
+          <span>🍷</span> Olive &amp; Burgundy Wine
+        </button>
+        <button class="theme-btn" onclick="setTheme('botanical')">
+          <span>🌿</span> Soft Sage-Olive
+        </button>
+        <button class="theme-btn" onclick="setTheme('darkolive')">
+          <span>🌲</span> Deep Forest Olive
+        </button>
+      </div>
+    </div>
+
+    <!-- Details Card -->
+    <div class="theme-desc-card">
+      <h3 id="info-title">Option 1: Tuscan Olive &amp; Champagne Gold (Warm Ivory)</h3>
+      <p id="info-desc">
+        Warm alabaster paper canvas with delicate watercolor olive foliage in the corners, deep velvet olive typography (#3E502E), frosted porcelain glass cards, and shimmering champagne gold foil (#C8A24A).
+      </p>
+      <div class="palette-row">
+        <div class="swatch-box">
+          <div class="swatch-circle" id="sw-bg"></div>
+          <div class="swatch-info"><div class="swatch-name">Paper Canvas</div><div class="swatch-hex" id="hex-bg">#FAF8F3</div></div>
+        </div>
+        <div class="swatch-box">
+          <div class="swatch-circle" id="sw-olive"></div>
+          <div class="swatch-info"><div class="swatch-name">Primary Olive</div><div class="swatch-hex" id="hex-olive">#3E502E</div></div>
+        </div>
+        <div class="swatch-box">
+          <div class="swatch-circle" id="sw-accent"></div>
+          <div class="swatch-info"><div class="swatch-name">Champagne Gold</div><div class="swatch-hex" id="hex-accent">#C8A24A</div></div>
+        </div>
+        <div class="swatch-box">
+          <div class="swatch-circle" id="sw-env"></div>
+          <div class="swatch-info"><div class="swatch-name">Envelope</div><div class="swatch-hex" id="hex-env">#364627</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Mockup Section -->
+    <div class="mockup-frame" id="frame">
+      <!-- Botanical SVG Foliage Sprigs -->
+      <svg class="bg-overlay-svg" viewBox="0 0 100 100" fill="none">
+        <path d="M90,10 Q60,30 30,80" stroke="#3E502E" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M80,18 Q88,10 92,20 Q85,25 80,18 Z" fill="#4B5E38" opacity="0.85"/>
+        <path d="M68,28 Q78,22 80,32 Q72,35 68,28 Z" fill="#3E502E" opacity="0.9"/>
+        <path d="M55,42 Q65,36 67,46 Q58,49 55,42 Z" fill="#5E7045" opacity="0.85"/>
+        <path d="M42,58 Q52,52 54,62 Q45,65 42,58 Z" fill="#3E502E" opacity="0.85"/>
+        <circle cx="75" cy="30" r="3.5" fill="#2E3B22"/>
+        <circle cx="62" cy="44" r="3" fill="#2E3B22"/>
+        <circle cx="85" cy="5" r="1.5" fill="#C8A24A"/>
+        <circle cx="60" cy="15" r="1" fill="#C8A24A"/>
+      </svg>
+      <svg class="bg-overlay-svg-bl" viewBox="0 0 100 100" fill="none">
+        <path d="M90,10 Q60,30 30,80" stroke="#3E502E" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M80,18 Q88,10 92,20 Q85,25 80,18 Z" fill="#4B5E38" opacity="0.85"/>
+        <path d="M68,28 Q78,22 80,32 Q72,35 68,28 Z" fill="#3E502E" opacity="0.9"/>
+        <path d="M55,42 Q65,36 67,46 Q58,49 55,42 Z" fill="#5E7045" opacity="0.85"/>
+        <circle cx="75" cy="30" r="3.5" fill="#2E3B22"/>
+      </svg>
+
+      <div class="mockup-envelope" id="env">
+        <div class="mockup-seal" id="seal">A&amp;B</div>
+      </div>
+
+      <div class="mockup-header">
+        <div class="mockup-label" id="label">Engagement Celebration</div>
+        <div class="mockup-names" id="names">
+          Anat Tom <span id="amp">&amp;</span> Britto Thomas
+        </div>
+        <div class="mockup-quote" id="quote">
+          &ldquo;Two hearts, one beautiful journey, and a lifetime of memories waiting to unfold.&rdquo;
+        </div>
+      </div>
+
+      <div class="mockup-cards">
+        <div class="mockup-card" id="card1">
+          <div class="mockup-card-icon" id="icon1">📅</div>
+          <div>
+            <div class="mockup-card-title">Ceremony Date &amp; Time</div>
+            <div class="mockup-card-val" id="val1">Sunday, 3 Jan 2027</div>
+            <div class="mockup-card-sub">12:15 PM IST</div>
+          </div>
+        </div>
+        <div class="mockup-card" id="card2">
+          <div class="mockup-card-icon" id="icon2">⛪</div>
+          <div>
+            <div class="mockup-card-title">Ceremony Venue</div>
+            <div class="mockup-card-val" id="val2">St. Thomas Church</div>
+            <div class="mockup-card-sub">Melukavumattom, Kottayam</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mockup-countdown" id="cd">
+        <div class="mockup-countdown-title" id="cd-title">Counting Down To The Blessed Day</div>
+        <div class="timer-grid">
+          <div class="timer-unit" id="t1">
+            <div class="timer-num" id="n1">403</div>
+            <div class="timer-lbl">Days</div>
+          </div>
+          <div class="timer-unit" id="t2">
+            <div class="timer-num" id="n2">15</div>
+            <div class="timer-lbl">Hours</div>
+          </div>
+          <div class="timer-unit" id="t3">
+            <div class="timer-num" id="n3">34</div>
+            <div class="timer-lbl">Mins</div>
+          </div>
+          <div class="timer-unit" id="t4">
+            <div class="timer-num" id="n4">28</div>
+            <div class="timer-lbl">Secs</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mockup-actions">
+        <a class="mockup-btn btn-rsvp" href="#">💬 WhatsApp RSVP (+91 9496907996)</a>
+        <a class="mockup-btn btn-cal" id="btn-cal" href="#">📅 Add to Google Calendar</a>
+      </div>
+
+      <div class="mockup-footer" id="footer">
+        &ldquo;Thank you for being a part of our happiness. With love, Anat &amp; Britto.&rdquo;
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const themes = {
+      tuscan: {
+        title: "🫒 Option 1: Tuscan Olive & Champagne Gold (Warm Ivory)",
+        desc: "Warm alabaster ivory paper (#FAF8F3) with delicate watercolor olive foliage in the corners, deep velvet olive typography (#3E502E), frosted porcelain glass cards, and shimmering champagne gold foil (#C8A24A).",
+        bg: "#FAF8F3",
+        olive: "#3E502E",
+        accent: "#C8A24A",
+        envelope: "#364627",
+        cardBg: "rgba(255, 255, 255, 0.90)",
+        cardBorder: "rgba(200, 162, 74, 0.35)",
+        cardShadow: "0 8px 24px rgba(62, 80, 46, 0.06)",
+        text: "#232B1E",
+        subText: "#505E45",
+        iconBg: "rgba(62, 80, 46, 0.1)",
+        timerBg: "rgba(200, 162, 74, 0.07)",
+        timerBorder: "rgba(200, 162, 74, 0.25)"
+      },
+      olivewine: {
+        title: "🍷 Option 2: Olive Branch & Royal Burgundy Wine",
+        desc: "The royal Italian vineyard blend. Warm cream base with majestic deep burgundy couple names & headers (#5A0D1D), paired with natural olive green venue cards (#465A36) and antique gold foil (#C29B46).",
+        bg: "#FAF7F2",
+        olive: "#5A0D1D",
+        accent: "#465A36",
+        envelope: "#465A36",
+        cardBg: "rgba(255, 255, 255, 0.92)",
+        cardBorder: "rgba(194, 155, 70, 0.32)",
+        cardShadow: "0 8px 24px rgba(90, 13, 29, 0.06)",
+        text: "#2C1E20",
+        subText: "#524440",
+        iconBg: "rgba(70, 90, 54, 0.12)",
+        timerBg: "rgba(194, 155, 70, 0.07)",
+        timerBorder: "rgba(194, 155, 70, 0.25)"
+      },
+      botanical: {
+        title: "🌿 Option 3: Soft Sage-Olive Linen & Warm White",
+        desc: "Fresh, breezy botanical modern aesthetic. Warm white linen base (#FDFCF9), muted silvery sage-olive tones (#536A47), bright Italian gold highlights (#D1A536), and clean minimalist card borders.",
+        bg: "#FDFCF9",
+        olive: "#485E3B",
+        accent: "#D1A536",
+        envelope: "#485E3B",
+        cardBg: "#FFFFFF",
+        cardBorder: "rgba(209, 165, 54, 0.32)",
+        cardShadow: "0 8px 24px rgba(72, 94, 59, 0.06)",
+        text: "#222B1E",
+        subText: "#52604B",
+        iconBg: "rgba(72, 94, 59, 0.1)",
+        timerBg: "rgba(209, 165, 54, 0.07)",
+        timerBorder: "rgba(209, 165, 54, 0.28)"
+      },
+      darkolive: {
+        title: "🌲 Option 4: Deep Midnight Forest Olive & Gold Foil",
+        desc: "Moody, dramatic luxury. Deep midnight olive green backdrop (#1A2317) with glowing champagne gold serif typography (#E6CB85), frosted dark velvet glass cards, and ivory accents.",
+        bg: "#1A2317",
+        olive: "#E6CB85",
+        accent: "#99B67C",
+        envelope: "#253221",
+        cardBg: "rgba(32, 44, 29, 0.75)",
+        cardBorder: "rgba(200, 162, 74, 0.3)",
+        cardShadow: "0 10px 30px rgba(0,0,0,0.5)",
+        text: "#F4F7F1",
+        subText: "rgba(244, 247, 241, 0.75)",
+        iconBg: "rgba(153, 182, 124, 0.15)",
+        timerBg: "rgba(200, 162, 74, 0.1)",
+        timerBorder: "rgba(200, 162, 74, 0.3)"
+      }
+    };
+
+    function setTheme(key) {
+      const t = themes[key];
+      if (!t) return;
+
+      document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+      const activeIdx = ['tuscan', 'olivewine', 'botanical', 'darkolive'].indexOf(key);
+      if (activeIdx >= 0) {
+        document.querySelectorAll('.theme-btn')[activeIdx].classList.add('active');
+      }
+
+      document.getElementById('info-title').textContent = t.title;
+      document.getElementById('info-desc').textContent = t.desc;
+
+      document.getElementById('sw-bg').style.background = t.bg;
+      document.getElementById('hex-bg').textContent = t.bg;
+      document.getElementById('sw-olive').style.background = t.olive;
+      document.getElementById('hex-olive').textContent = t.olive;
+      document.getElementById('sw-accent').style.background = t.accent;
+      document.getElementById('hex-accent').textContent = t.accent;
+      document.getElementById('sw-env').style.background = t.envelope;
+      document.getElementById('hex-env').textContent = t.envelope;
+
+      const f = document.getElementById('frame');
+      f.style.background = t.bg;
+      f.style.color = t.text;
+      f.style.borderColor = t.cardBorder;
+
+      document.getElementById('env').style.background = t.envelope;
+      document.getElementById('seal').style.background = t.accent;
+
+      document.getElementById('label').style.color = t.accent;
+      document.getElementById('names').style.color = t.olive;
+      document.getElementById('amp').style.color = t.accent;
+      document.getElementById('quote').style.color = t.subText;
+
+      ['card1', 'card2', 'cd'].forEach(id => {
+        const el = document.getElementById(id);
+        el.style.background = t.cardBg;
+        el.style.borderColor = t.cardBorder;
+        el.style.borderWidth = '1px';
+        el.style.borderStyle = 'solid';
+        el.style.boxShadow = t.cardShadow;
+      });
+
+      document.getElementById('val1').style.color = t.olive;
+      document.getElementById('icon1').style.color = t.olive;
+      document.getElementById('icon1').style.background = t.iconBg;
+
+      document.getElementById('val2').style.color = t.olive;
+      document.getElementById('icon2').style.color = t.olive;
+      document.getElementById('icon2').style.background = t.iconBg;
+
+      document.getElementById('cd-title').style.color = t.accent;
+
+      ['t1', 't2', 't3', 't4'].forEach(id => {
+        const el = document.getElementById(id);
+        el.style.background = t.timerBg;
+        el.style.border = '1px solid ' + t.timerBorder;
+      });
+      ['n1', 'n2', 'n3', 'n4'].forEach(id => {
+        document.getElementById(id).style.color = t.olive;
+      });
+
+      const cal = document.getElementById('btn-cal');
+      cal.style.background = t.cardBg;
+      cal.style.borderColor = t.cardBorder;
+      cal.style.color = t.olive;
+
+      const ft = document.getElementById('footer');
+      ft.style.borderColor = t.cardBorder;
+    }
+
+    setTheme('tuscan');
+  </script>
+</body>
+</html>
