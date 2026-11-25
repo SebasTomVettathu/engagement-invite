@@ -85,7 +85,7 @@ const CONFIG = {
   /* ── MUSIC ── */
   music: {
     file: 'assets/music/romantic-piano.mp3',
-    title: 'Romantic Piano',
+    title: 'Love at First Sight',
   },
 
   /* ── OUR STORY — milestones ── */

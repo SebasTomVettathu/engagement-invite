@@ -265,6 +265,11 @@ document.addEventListener('DOMContentLoaded', () => {
     audioEl.loop   = true;
     audioEl.volume = 0.5;
 
+    const nowPlayEl = document.getElementById('now-playing-text');
+    if (nowPlayEl && C.music && C.music.title) {
+      nowPlayEl.textContent = `🎵 ${C.music.title}`;
+    }
+
     const muteBtn = document.getElementById('music-mute-btn');
     if (muteBtn) {
       muteBtn.addEventListener('click', toggleMute);
