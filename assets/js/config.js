@@ -60,8 +60,8 @@ const CONFIG = {
 
   /* ── COMPLIMENTARY ── */
   complimentary: {
-    names: ['Sebas Tom', 'Benat Tom'],
-    display: 'Sebas Tom & Benat Tom',
+    names: ['Benat Tom', 'Sebas Tom'],
+    display: 'Benat Tom & Sebas Tom',
   },
 
   /* ── WHATSAPP RSVP ── */
