@@ -628,7 +628,7 @@ a {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 7rem 2rem 4rem;
+  padding: 7rem 2rem 8rem; /* Extra bottom padding keeps date badge above scroll hint */
   background: var(--hero-gradient);
   position: relative;
   overflow: hidden;
@@ -726,6 +726,8 @@ a {
   text-transform: uppercase;
   color: var(--gold-light);
   animation: fadeUp 1s ease 0.9s both;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-scroll-hint {
@@ -742,6 +744,8 @@ a {
   text-transform: uppercase;
   color: var(--text-muted);
   animation: fadeUp 1s ease 1.5s both;
+  z-index: 1; /* Stays below the date badge which is in normal flow */
+  pointer-events: none;
 }
 
 .scroll-line {
