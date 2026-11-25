@@ -22,10 +22,10 @@
   <meta name="twitter:title"       content="Anat Tom &amp; Britto Thomas — Engagement Invitation" />
   <meta name="twitter:description" content="Join us to celebrate the engagement of Anat Tom &amp; Britto Thomas on 3 January 2027 at St Thomas Church, Melukavumattom." />
 
-  <!-- Fonts -->
+  <!-- Fonts: Cormorant Garamond (serif) + Montserrat (sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&family=Noto+Sans+Malayalam:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <!-- Styles -->
   <link rel="stylesheet" href="assets/css/style.css" />
@@ -33,88 +33,38 @@
 
 <body>
 
-  <!-- Skip Navigation (Accessibility) -->
+  <!-- Skip Navigation -->
   <a href="#main-invitation" class="skip-link">Skip to main content</a>
 
   <!-- ══════════════════════════════════
-       TOP BAR — Language · Theme · Music
+       TOP BAR — Mute button only
        ══════════════════════════════════ -->
-  <div id="top-bar" role="banner">
-    <div class="top-bar-left">
-      <!-- Language Switcher -->
-      <div id="lang-switcher"
-           role="group"
-           aria-label="Choose language"
-           aria-labelledby="lang-label">
-        <span id="lang-label" class="sr-only">Language</span>
-        <!-- Buttons injected by JS -->
-      </div>
-    </div>
-
-    <div class="top-bar-right">
-      <!-- Theme Switcher -->
-      <div id="theme-switcher"
-           role="group"
-           aria-label="Choose colour theme">
-        <!-- Dots injected by JS -->
-      </div>
-
-      <!-- Music Player -->
-      <div id="music-player-bar" aria-label="Music player">
-        <span id="now-playing-text" class="now-playing" aria-live="polite" aria-atomic="true"></span>
-        <button id="music-play-btn"
-                class="music-btn"
-                aria-label="Play music"
-                title="Play music">▶</button>
-        <button id="music-mute-btn"
-                class="music-btn"
-                aria-label="Mute music"
-                title="Mute music">🔊</button>
-      </div>
+  <div id="top-bar" role="banner" aria-label="Site controls">
+    <!-- Music mute/unmute only — music plays automatically after envelope opens -->
+    <div id="music-player-bar" aria-label="Music controls">
+      <span id="now-playing-text" class="now-playing" aria-live="polite" aria-atomic="true">🎵 Now Playing</span>
+      <button id="music-mute-btn"
+              class="music-btn"
+              aria-label="Mute music"
+              title="Mute music">🔊</button>
     </div>
   </div>
 
   <!-- Hidden audio element -->
-  <audio id="bg-audio" preload="none" aria-hidden="true"></audio>
-
-  <!-- ══════════════════════════════════
-       MUSIC PROMPT MODAL
-       ══════════════════════════════════ -->
-  <div id="music-prompt"
-       role="dialog"
-       aria-modal="true"
-       aria-labelledby="music-prompt-title-el"
-       aria-hidden="true">
-    <div class="music-prompt-card">
-      <div class="music-prompt-icon" aria-hidden="true">🎵</div>
-      <h2 class="music-prompt-title" id="music-prompt-title-el">Background Music 🎵</h2>
-      <p class="music-prompt-body" id="music-prompt-body">
-        Would you like to play soft romantic music?
-      </p>
-      <div class="music-prompt-btns">
-        <button id="music-yes-btn" class="btn btn-gold">Yes, play music</button>
-        <button id="music-no-btn"  class="btn btn-outline">No, thanks</button>
-      </div>
-    </div>
-  </div>
+  <audio id="bg-audio" preload="none" aria-hidden="true" loop></audio>
 
   <!-- ══════════════════════════════════
        SECTION 1 — ENVELOPE
        ══════════════════════════════════ -->
-  <section id="envelope-section"
-           aria-label="Engagement invitation envelope">
+  <section id="envelope-section" aria-label="Engagement invitation envelope">
 
-    <!-- Background particles -->
     <div class="particles particles-host" aria-hidden="true"></div>
-
-    <!-- Background ornament borders -->
     <div class="env-bg-ornament" aria-hidden="true"></div>
 
     <div id="envelope-wrapper">
 
-      <!-- Pre-text above envelope -->
       <div class="env-pretext" aria-hidden="true">
-        <p data-i18n="envelopeLabel">You Are Invited</p>
+        <p>You Are Invited</p>
       </div>
 
       <!-- The Envelope -->
@@ -125,82 +75,63 @@
            aria-expanded="false">
 
         <div class="envelope-body" aria-hidden="true">
-          <!-- Back flap (shows under front flap when opened) -->
           <div class="envelope-flap-back"></div>
-          <!-- Side flaps (decorative) -->
           <div class="envelope-left-flap"></div>
           <div class="envelope-right-flap"></div>
-          <!-- Bottom flap -->
           <div class="envelope-bottom-flap"></div>
-          <!-- Front flap (animates open) -->
           <div class="envelope-flap"></div>
 
-          <!-- Card peeking out when opened -->
           <div id="invitation-card-preview" aria-hidden="true">
             <div class="card-inner-text">
               <span>Anat &amp; Britto</span>
             </div>
           </div>
 
-          <!-- Wax Seal -->
           <div class="wax-seal" aria-hidden="true">
             <span class="wax-seal-initials" id="wax-seal-text">A &amp; B</span>
           </div>
         </div>
       </div>
 
-      <!-- Tap hint -->
-      <p id="envelope-tap-hint"
-         class="envelope-tap-hint"
-         aria-hidden="true"
-         data-i18n="envelopeTap">Tap to open</p>
+      <p id="envelope-tap-hint" class="envelope-tap-hint" aria-hidden="true">Tap to open</p>
 
     </div>
   </section>
 
   <!-- ══════════════════════════════════
-       SECTION 2 — MAIN INVITATION (hidden until envelope opens)
+       SECTION 2 — MAIN INVITATION
        ══════════════════════════════════ -->
-  <main id="main-invitation"
-        class="hidden"
-        aria-label="Engagement invitation">
+  <main id="main-invitation" class="hidden" aria-label="Engagement invitation">
 
-    <!-- Background particles -->
     <div class="particles particles-host" aria-hidden="true"></div>
 
-    <!-- Eyebrow label -->
-    <p class="hero-eyebrow" data-i18n="engagementLabel">Engagement · 3 January 2027</p>
+    <p class="hero-eyebrow">Engagement &middot; 3 January 2027</p>
 
-    <!-- Couple Names -->
     <h1 class="hero-names" aria-label="Anat Tom and Britto Thomas">
       <span class="bride-name" id="hero-bride-name">Anat Tom</span>
       <span class="hero-ampersand" aria-hidden="true">&amp;</span>
       <span class="groom-name" id="hero-groom-name">Britto Thomas</span>
     </h1>
 
-    <!-- Decorative divider -->
     <div class="ornament reveal" aria-hidden="true">
       <div class="ornament-line"></div>
       <span class="ornament-center">✦</span>
       <div class="ornament-line"></div>
     </div>
 
-    <!-- Invitation body text -->
-    <p class="hero-subtitle reveal" data-i18n="heroSubtitle">
-      Together with their families,
-      request the pleasure of your presence
+    <p class="hero-subtitle reveal">
+      Together with their families,<br>
+      request the pleasure of your presence<br>
       at their engagement ceremony.
     </p>
 
-    <!-- Date badge -->
     <div class="hero-date-badge reveal" aria-label="Engagement ceremony on 3 January 2027">
       <span aria-hidden="true">💍</span>
-      <span data-i18n="engagementLabel">Engagement · 3 January 2027</span>
+      <span>Engagement &middot; 3 January 2027</span>
     </div>
 
-    <!-- Scroll hint -->
     <div class="hero-scroll-hint" aria-hidden="true">
-      <span data-i18n="scrollHint">Scroll</span>
+      <span>Scroll</span>
       <div class="scroll-line"></div>
     </div>
 
@@ -209,34 +140,32 @@
   <!-- ══════════════════════════════════
        SECTION 3 — COUNTDOWN
        ══════════════════════════════════ -->
-  <section class="section-full"
-           aria-labelledby="countdown-heading">
+  <section class="section-full" aria-labelledby="countdown-heading">
     <div class="section-inner">
-      <p class="section-label reveal" data-i18n="countdownLabel">Counting down to the big day</p>
-      <h2 class="section-title reveal" id="countdown-heading" data-i18n="countdownTitle">The Celebration Begins In</h2>
+      <p class="section-label reveal">Counting down to the big day</p>
+      <h2 class="section-title reveal" id="countdown-heading">The Celebration Begins In</h2>
 
-      <!-- ARIA live region for screen readers -->
       <div id="countdown-live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
       <div class="countdown-grid" id="countdown-grid" aria-hidden="true">
         <div class="count-unit">
           <div class="count-num" id="cd-days">--</div>
-          <div class="count-label" data-i18n="days">Days</div>
+          <div class="count-label">Days</div>
         </div>
         <div class="count-sep" aria-hidden="true">:</div>
         <div class="count-unit">
           <div class="count-num" id="cd-hours">--</div>
-          <div class="count-label" data-i18n="hours">Hours</div>
+          <div class="count-label">Hours</div>
         </div>
         <div class="count-sep" aria-hidden="true">:</div>
         <div class="count-unit">
           <div class="count-num" id="cd-mins">--</div>
-          <div class="count-label" data-i18n="minutes">Minutes</div>
+          <div class="count-label">Minutes</div>
         </div>
         <div class="count-sep" aria-hidden="true">:</div>
         <div class="count-unit">
           <div class="count-num" id="cd-secs">--</div>
-          <div class="count-label" data-i18n="seconds">Seconds</div>
+          <div class="count-label">Seconds</div>
         </div>
       </div>
 
@@ -245,41 +174,36 @@
   </section>
 
   <!-- ══════════════════════════════════
-       SECTION 4 — INVITATION DETAILS
+       SECTION 4 — EVENT DETAILS
        ══════════════════════════════════ -->
-  <section class="section"
-           aria-labelledby="details-heading">
-    <p class="section-label reveal" data-i18n="detailsLabel">You're Invited</p>
-    <h2 class="section-title reveal" id="details-heading" data-i18n="detailsTitle">Event Details</h2>
+  <section class="section" aria-labelledby="details-heading">
+    <p class="section-label reveal">You're Invited</p>
+    <h2 class="section-title reveal" id="details-heading">Event Details</h2>
 
     <div class="luxury-card reveal">
-      <!-- Date -->
       <div class="detail-row">
-        <p class="detail-row-label" data-i18n="dateLabel">Date</p>
+        <p class="detail-row-label">Date</p>
         <p class="detail-row-val" id="event-date">Sunday, 3rd January 2027</p>
       </div>
 
       <div class="detail-sep" aria-hidden="true"></div>
 
-      <!-- Time -->
       <div class="detail-row">
-        <p class="detail-row-label" data-i18n="timeLabel">Time</p>
+        <p class="detail-row-label">Time</p>
         <p class="detail-row-val" id="event-time">12:15 PM</p>
-        <p class="detail-row-sub">IST · Asia/Kolkata</p>
+        <p class="detail-row-sub">IST &middot; Asia/Kolkata</p>
       </div>
 
       <div class="detail-sep" aria-hidden="true"></div>
 
-      <!-- Venue -->
       <div class="detail-row">
-        <p class="detail-row-label" data-i18n="venueLabel">Venue</p>
+        <p class="detail-row-label">Venue</p>
         <p class="detail-row-val">St Thomas Church</p>
         <p class="detail-row-sub">Melukavumattom</p>
       </div>
 
       <div class="detail-sep" aria-hidden="true"></div>
 
-      <!-- Map Button -->
       <div class="detail-row">
         <a href="https://maps.google.com/?q=St+Thomas+Church+Melukavumattom"
            class="btn btn-outline maps-btn"
@@ -287,7 +211,7 @@
            rel="noopener noreferrer"
            aria-label="Open St Thomas Church, Melukavumattom in Google Maps">
           <span aria-hidden="true">📍</span>
-          <span data-i18n="mapsBtn">Open in Google Maps</span>
+          <span>Open in Google Maps</span>
         </a>
       </div>
     </div>
@@ -296,19 +220,15 @@
   <!-- ══════════════════════════════════
        SECTION 5 — EVENT SCHEDULE
        ══════════════════════════════════ -->
-  <section class="section"
-           aria-labelledby="schedule-heading">
-    <p class="section-label reveal" data-i18n="scheduleLabel">Event Programme</p>
-    <h2 class="section-title reveal" id="schedule-heading" data-i18n="scheduleTitle">Ceremony Schedule</h2>
+  <section class="section" aria-labelledby="schedule-heading">
+    <p class="section-label reveal">Event Programme</p>
+    <h2 class="section-title reveal" id="schedule-heading">Ceremony Schedule</h2>
 
     <div class="schedule-item reveal">
       <div class="schedule-time" aria-label="12:15 PM">12:15 PM</div>
       <div class="schedule-info">
-        <h3 data-i18n="schedule12_15">Engagement Ceremony</h3>
-        <p>
-          <span data-i18n="scheduleVenueLabel">Venue</span>:
-          St Thomas Church, Melukavumattom
-        </p>
+        <h3>Engagement Ceremony</h3>
+        <p>Venue: St Thomas Church, Melukavumattom</p>
       </div>
     </div>
   </section>
@@ -323,7 +243,7 @@
       <div class="ornament-line"></div>
     </div>
 
-    <blockquote class="blessing-text reveal" data-i18n="blessing">
+    <blockquote class="blessing-text reveal">
       "Two souls, one heart,<br>joined together in love and grace."
     </blockquote>
 
@@ -337,11 +257,10 @@
   <!-- ══════════════════════════════════
        SECTION 7 — COUPLE PORTRAITS
        ══════════════════════════════════ -->
-  <section class="section-full"
-           aria-labelledby="couple-heading">
+  <section class="section-full" aria-labelledby="couple-heading">
     <div class="section-inner">
-      <p class="section-label reveal" data-i18n="coupleLabel">The Happy Couple</p>
-      <h2 class="section-title reveal" id="couple-heading" data-i18n="coupleTitle">Bride &amp; Groom</h2>
+      <p class="section-label reveal">The Happy Couple</p>
+      <h2 class="section-title reveal" id="couple-heading">Bride &amp; Groom</h2>
 
       <div class="couple-grid">
 
@@ -364,7 +283,7 @@
             </div>
           </div>
           <p class="portrait-name">Anat Tom</p>
-          <p class="portrait-role" data-i18n="brideLabel">Bride</p>
+          <p class="portrait-role">Bride</p>
         </div>
 
         <!-- Groom -->
@@ -386,7 +305,7 @@
             </div>
           </div>
           <p class="portrait-name">Britto Thomas</p>
-          <p class="portrait-role" data-i18n="groomLabel">Groom</p>
+          <p class="portrait-role">Groom</p>
         </div>
 
       </div>
@@ -394,85 +313,11 @@
   </section>
 
   <!-- ══════════════════════════════════
-       SECTION 8 — PHOTO GALLERY
+       SECTION 8 — FAMILY
        ══════════════════════════════════ -->
-  <section class="section"
-           aria-labelledby="gallery-heading">
-    <p class="section-label reveal" data-i18n="galleryLabel">Memories</p>
-    <h2 class="section-title reveal" id="gallery-heading" data-i18n="galleryTitle">Photo Gallery</h2>
-
-    <div id="gallery-grid"
-         class="gallery-grid"
-         role="list"
-         aria-label="Photo gallery">
-      <!-- Images injected by JS from CONFIG.gallery.images -->
-    </div>
-
-    <div id="gallery-empty"
-         class="gallery-empty"
-         aria-live="polite">
-      Photos coming soon…
-    </div>
-  </section>
-
-  <!-- Lightbox -->
-  <div id="lightbox"
-       role="dialog"
-       aria-modal="true"
-       aria-label="Photo lightbox"
-       aria-hidden="true">
-
-    <div class="lightbox-counter" id="lightbox-counter" aria-live="polite"></div>
-
-    <button id="lightbox-close"
-            class="lightbox-btn"
-            aria-label="Close lightbox">✕</button>
-
-    <button id="lightbox-prev"
-            class="lightbox-btn"
-            data-i18n-aria="galleryPrev"
-            aria-label="Previous photo">‹</button>
-
-    <img id="lightbox-img" src="" alt="" />
-
-    <button id="lightbox-next"
-            class="lightbox-btn"
-            data-i18n-aria="galleryNext"
-            aria-label="Next photo">›</button>
-
-    <p id="lightbox-caption" aria-live="polite"></p>
-  </div>
-
-  <!-- ══════════════════════════════════
-       SECTION 9 — OUR STORY
-       ══════════════════════════════════ -->
-  <section class="section-full"
-           aria-labelledby="story-heading">
-    <div class="section-inner">
-      <p class="section-label reveal" data-i18n="storyLabel">Our Journey</p>
-      <h2 class="section-title reveal" id="story-heading" data-i18n="storyTitle">Our Story</h2>
-
-      <div class="story-timeline"
-           id="story-timeline"
-           aria-label="Our Story timeline">
-        <!-- Milestones injected by JS from CONFIG.story -->
-      </div>
-
-      <div id="story-empty"
-           class="story-empty"
-           aria-live="polite">
-        Our story will be shared here soon…
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════
-       SECTION 10 — FAMILY
-       ══════════════════════════════════ -->
-  <section class="section"
-           aria-labelledby="family-heading">
-    <p class="section-label reveal" data-i18n="familyLabel">With the Blessings of Our Parents</p>
-    <h2 class="section-title reveal" id="family-heading" data-i18n="familyTitle">Our Families</h2>
+  <section class="section" aria-labelledby="family-heading">
+    <p class="section-label reveal">With the Blessings of Our Parents</p>
+    <h2 class="section-title reveal" id="family-heading">Our Families</h2>
 
     <div class="ornament reveal" aria-hidden="true">
       <div class="ornament-line"></div>
@@ -482,9 +327,8 @@
 
     <div class="family-grid">
 
-      <!-- Bride's family -->
       <div class="family-side reveal-left">
-        <p class="family-role" data-i18n="brideParentsLabel">Bride's Parents</p>
+        <p class="family-role">Bride's Parents</p>
         <div class="family-name-pair" id="bride-family-names">
           <div class="family-name">Mr Tomy Sebastian</div>
           <div class="family-name-sep"></div>
@@ -492,9 +336,8 @@
         </div>
       </div>
 
-      <!-- Groom's family -->
       <div class="family-side reveal-right">
-        <p class="family-role" data-i18n="groomParentsLabel">Groom's Parents</p>
+        <p class="family-role">Groom's Parents</p>
         <div class="family-name-pair" id="groom-family-names">
           <div class="family-name">Mr Thomas Joseph</div>
           <div class="family-name-sep"></div>
@@ -506,41 +349,39 @@
   </section>
 
   <!-- ══════════════════════════════════
-       SECTION 11 — ADD TO CALENDAR
+       SECTION 9 — ADD TO CALENDAR
        ══════════════════════════════════ -->
-  <section class="section-full"
-           aria-labelledby="calendar-heading">
+  <section class="section-full" aria-labelledby="calendar-heading">
     <div class="section-inner">
-      <p class="section-label reveal" data-i18n="calendarLabel">Save the Date</p>
-      <h2 class="section-title reveal" id="calendar-heading" data-i18n="calendarTitle">Add to Calendar</h2>
+      <p class="section-label reveal">Save the Date</p>
+      <h2 class="section-title reveal" id="calendar-heading">Add to Calendar</h2>
 
       <div class="calendar-btns reveal">
         <button id="gcal-btn"
                 class="btn btn-outline"
                 aria-label="Add engagement ceremony to Google Calendar">
           <span aria-hidden="true">📅</span>
-          <span data-i18n="googleCalBtn">Add to Google Calendar</span>
+          <span>Add to Google Calendar</span>
         </button>
 
         <button id="ics-btn"
                 class="btn btn-outline"
                 aria-label="Download .ics calendar file for the engagement ceremony">
           <span aria-hidden="true">⬇️</span>
-          <span data-i18n="icsBtn">Download .ics File</span>
+          <span>Download .ics File</span>
         </button>
       </div>
     </div>
   </section>
 
   <!-- ══════════════════════════════════
-       SECTION 12 — RSVP
+       SECTION 10 — RSVP
        ══════════════════════════════════ -->
-  <section class="section"
-           aria-labelledby="rsvp-heading">
-    <p class="section-label reveal" data-i18n="rsvpLabel">We'd love to see you there</p>
-    <h2 class="section-title reveal" id="rsvp-heading" data-i18n="rsvpTitle">RSVP</h2>
+  <section class="section" aria-labelledby="rsvp-heading">
+    <p class="section-label reveal">We'd love to see you there</p>
+    <h2 class="section-title reveal" id="rsvp-heading">RSVP</h2>
 
-    <p class="rsvp-body-text reveal" data-i18n="rsvpBody">
+    <p class="rsvp-body-text reveal">
       Kindly confirm your attendance by reaching out to us on WhatsApp.
     </p>
 
@@ -551,24 +392,22 @@
          target="_blank"
          rel="noopener noreferrer"
          aria-label="RSVP via WhatsApp to confirm attendance at the engagement ceremony">
-        <!-- WhatsApp SVG Icon -->
         <svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
-        <span data-i18n="rsvpBtn">RSVP on WhatsApp</span>
+        <span>RSVP on WhatsApp</span>
       </a>
     </div>
   </section>
 
   <!-- ══════════════════════════════════
-       SECTION 13 — SHARE
+       SECTION 11 — SHARE
        ══════════════════════════════════ -->
-  <section class="section-full"
-           aria-labelledby="share-heading">
+  <section class="section-full" aria-labelledby="share-heading">
     <div class="section-inner">
-      <p class="section-label reveal" data-i18n="shareLabel">Spread the joy</p>
-      <h2 class="section-title reveal" id="share-heading" data-i18n="shareTitle">Share this Invitation</h2>
-      <p class="rsvp-body-text reveal" data-i18n="shareBody">Share this invite with family and friends.</p>
+      <p class="section-label reveal">Spread the joy</p>
+      <h2 class="section-title reveal" id="share-heading">Share this Invitation</h2>
+      <p class="rsvp-body-text reveal">Share this invite with family and friends.</p>
 
       <div class="btn-group reveal">
         <a id="wa-share-btn"
@@ -580,24 +419,23 @@
           <svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
           </svg>
-          <span data-i18n="shareWa">Share on WhatsApp</span>
+          <span>Share on WhatsApp</span>
         </a>
 
         <button id="copy-btn"
                 class="btn btn-outline"
                 aria-label="Copy invitation link to clipboard">
           <span aria-hidden="true">🔗</span>
-          <span data-i18n="shareCopy">Copy Link</span>
+          <span>Copy Link</span>
         </button>
       </div>
     </div>
   </section>
 
   <!-- ══════════════════════════════════
-       SECTION 14 — COMPLIMENTARY
+       SECTION 12 — COMPLIMENTARY
        ══════════════════════════════════ -->
-  <section id="complimentary-section"
-           aria-labelledby="comp-heading">
+  <section id="complimentary-section" aria-labelledby="comp-heading">
 
     <div class="complimentary-flourish" aria-hidden="true">
       <div class="complimentary-flourish-line"></div>
@@ -605,10 +443,9 @@
       <div class="complimentary-flourish-line"></div>
     </div>
 
-    <p class="complimentary-label reveal" data-i18n="complimentaryLabel">Complimentary From</p>
+    <p class="complimentary-label reveal">Complimentary From</p>
 
-    <h2 class="complimentary-names reveal"
-        id="comp-heading">
+    <h2 class="complimentary-names reveal" id="comp-heading">
       <span id="complimentary-names">Sebas Tom &amp; Benat Tom</span>
     </h2>
 
@@ -625,13 +462,13 @@
        ══════════════════════════════════ -->
   <footer>
     <p class="footer-couple">
-      <span data-i18n="footerLove">With love from</span>
+      With love from
       <span style="color:var(--gold);"> Anat &amp; Britto</span>
     </p>
     <p class="footer-event">
-      3 January 2027 &nbsp;·&nbsp; St Thomas Church, Melukavumattom
+      3 January 2027 &nbsp;&middot;&nbsp; St Thomas Church, Melukavumattom
     </p>
-    <p style="margin-top:1rem;" class="footer-event" data-i18n="footerMade">Made with ❤️ for Anat &amp; Britto</p>
+    <p style="margin-top:1rem;" class="footer-event">Made with ❤️ for Anat &amp; Britto</p>
   </footer>
 
   <!-- Scripts -->
