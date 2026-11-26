@@ -88,6 +88,29 @@ document.addEventListener('DOMContentLoaded', () => {
       ).join('');
     }
 
+    /* Family Addresses */
+    const brideAddrBlock = document.getElementById('bride-family-address-block');
+    const brideAddrEl = document.getElementById('bride-family-address');
+    if (brideAddrEl && C.parents) {
+      if (C.parents.brideAddress && C.parents.brideAddress.trim()) {
+        brideAddrEl.innerHTML = C.parents.brideAddress.trim().replace(/\n/g, '<br>');
+        if (brideAddrBlock) brideAddrBlock.style.display = 'flex';
+      } else if (brideAddrBlock) {
+        brideAddrBlock.style.display = 'none';
+      }
+    }
+
+    const groomAddrBlock = document.getElementById('groom-family-address-block');
+    const groomAddrEl = document.getElementById('groom-family-address');
+    if (groomAddrEl && C.parents) {
+      if (C.parents.groomAddress && C.parents.groomAddress.trim()) {
+        groomAddrEl.innerHTML = C.parents.groomAddress.trim().replace(/\n/g, '<br>');
+        if (groomAddrBlock) groomAddrBlock.style.display = 'flex';
+      } else if (groomAddrBlock) {
+        groomAddrBlock.style.display = 'none';
+      }
+    }
+
     /* Complimentary */
     const compEl = document.getElementById('complimentary-names');
     if (compEl) compEl.textContent = C.complimentary.display;

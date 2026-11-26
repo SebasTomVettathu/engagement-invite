@@ -1081,6 +1081,15 @@ a      { text-decoration: none; color: inherit; }
   padding: 2.2rem 1.6rem;
   background: #FFFFFF;
   box-shadow: 0 10px 30px rgba(52, 58, 45, 0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.family-side:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(52, 58, 45, 0.12);
 }
 .family-role {
   font-size: 0.65rem;
@@ -1090,7 +1099,7 @@ a      { text-decoration: none; color: inherit; }
   margin-bottom: 1.25rem;
   font-weight: 600;
 }
-.family-name-pair { display: flex; flex-direction: column; gap: 0.6rem; }
+.family-name-pair { display: flex; flex-direction: column; gap: 0.6rem; width: 100%; }
 .family-name {
   font-family: var(--font-serif);
   font-size: 1.35rem;
@@ -1098,6 +1107,42 @@ a      { text-decoration: none; color: inherit; }
   color: var(--forest-green);
 }
 .family-name-sep { width: 32px; height: 1px; background: var(--antique-gold); margin: 0.35rem auto; }
+
+.family-address-block {
+  margin-top: 1.35rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.family-address-divider {
+  width: 52px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--antique-gold), transparent);
+  margin-bottom: 0.85rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.family-address-divider::after {
+  content: '✦';
+  position: absolute;
+  font-size: 0.5rem;
+  color: var(--antique-gold);
+  background: #FFFFFF;
+  padding: 0 4px;
+  line-height: 1;
+}
+.family-address {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--primary-olive);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
 
 /* ══════════════════════════════════════════
    SECTION 8: CALENDAR BUTTONS (Warm Beige Base)

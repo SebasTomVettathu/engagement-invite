@@ -52,10 +52,12 @@ const CONFIG = {
       { prefix: 'Mr', name: 'Tomy Sebastian' },
       { prefix: 'Mrs', name: 'Bincy Tomy' },
     ],
+    brideAddress: 'Vettathu House\nMelukavumattom',
     groom: [
       { prefix: 'Mr', name: 'Thomas Joseph' },
       { prefix: 'Mrs', name: 'Leela Thomas' },
     ],
+    groomAddress: 'Kalloor House\nMelukavumattom',
   },
 
   /* ── COMPLIMENTARY ── */
