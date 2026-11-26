@@ -57,7 +57,7 @@ const CONFIG = {
       { prefix: 'Mr', name: 'Thomas Joseph' },
       { prefix: 'Mrs', name: 'Leela Thomas' },
     ],
-    groomAddress: 'Kalloor House\nMelukavumattom',
+    groomAddress: 'Avarappattu House\nNellimattom P.O, Kothamangalam',
   },
 
   /* ── COMPLIMENTARY ── */
